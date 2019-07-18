@@ -60,23 +60,32 @@ def SelectedMatrix(sym):
     return selected
 
 def renorm(dia):
-    #Mdia = dia*dis_num.values()
+    for c in dia.index:
+        dia[c] *= dis_num[c]**(1/3)
     dia.sort_values(ascending=False, inplace=True)
     temp = dia**3
     
     s = sum(temp[:5])
     return temp/s
 
+def symptom(sym_in):
+    if sym_in in rev_sym:
+        return rev_sym[sym_in]
+    for sym in rev_sym:
+        if sym_in in sym:
+            return rev_sym[sym]
+    if sym_in in dic:
+        return rev_sym[dic[sym]]
+    return 'Symptom not found'
+
 def diagnosis():
     
-    gender, age, sym = initial_input()
+    gender, age, sym_in = initial_input()
     
-    if sym in rev_sym:
-        sym = rev_sym[sym]
-    elif sym in dic:
-        sym = rev_sym[sym]
-    else:
-        print('Symptom not found')
+    
+    sym = symptom(sym_in)
+    if sym == 'Symptom not found':
+        print(sym)
         return -1
     
     selected = SelectedMatrix(sym)
@@ -89,7 +98,12 @@ def diagnosis():
     while True:
         dia = WM.dot(res)
         
-        if len(selected) == 1:
+        for j in selected.columns:
+            if 0 not in selected[j].value_counts():
+                res[j] = 1
+                selected.drop(columns=[j], inplace = True)  
+                
+        if len(selected) == 1 or len(selected.columns) <= 1:
             dia = renorm(dia)
             print('-----------------------------------------------------------')
             print('Diagnosis results:')
@@ -98,22 +112,20 @@ def diagnosis():
                     print(umls_dis[dia.keys()[i]], ':%2d'%(dia[i]*100), '%')
             print('-----------------------------------------------------------')        
             return 'Diagnosis done'
-        if len(selected.columns) == 1:
-            print('diagnosis failM')
-            return 'Diagnosis fail'
-            
+        
+                   
         #choose the most relevant symptom to ask: The symptom that are least shared with other diseases
         next_i = selected.columns[0]
-        s = 0
+        s = 100
         for i in selected.columns:   
             if 0 in selected[i].value_counts():
-                pri = selected[i].value_counts()[0]
-                if pri > s:
+                pri = abs(selected[i].value_counts()[0] - len(selected)/2)
+                if pri < s:
                     s = pri
-                    next_i = i
+                    next_i = i      
             else:
                 res[next_i] = 1
-                selected.drop(columns=[i], inplace = True)  
+                selected = selected[selected[next_i]!=0]
          
         print('-----------------------------------------------------------')
         print('Do you have the following symptom: (Y for Yes and N for No)')
