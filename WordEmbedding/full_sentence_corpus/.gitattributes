@@ -1,3 +1,1 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:15b1128e7707ac928402c2a8336c1f7c98d56517734b75ebba2f8121f1e5799e
-size 61
+full_sentence_corpus.txt filter=lfs diff=lfs merge=lfs -text
