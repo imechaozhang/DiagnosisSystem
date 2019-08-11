@@ -65,7 +65,7 @@ C0020621,hypokalemia
 C0020625,hyponatremia
 C0020639,hypoproteinemia
 C0020649,hypotension
-C0020672,"hypothermia, natural"
+C0020672,"hypothermia - natural"
 C0022107,irritable mood
 C0023222,pain in lower limb
 C0023380,lethargy
@@ -89,7 +89,6 @@ C0030318,panic
 C0030552,paresis
 C0030554,paresthesia
 C0032617,polyuria
-C0032739,
 C0032781,posterior rhinorrhea
 C0033774,pruritus
 C0034079,lung nodule
