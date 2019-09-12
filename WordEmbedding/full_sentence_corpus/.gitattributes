@@ -1,1 +1,0 @@
-full_sentence_corpus.txt filter=lfs diff=lfs merge=lfs -text
