@@ -1,0 +1,662 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Demo}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{diagnosis-system-demo}{%
+\section{Diagnosis System Demo}\label{diagnosis-system-demo}}
+
+This demo shows how our diagnosis system work.
+
+\hypertarget{problem}{%
+\subsection{Problem}\label{problem}}
+
+While we have a lot of resources in the US, African people are suffering
+from high disease burden and reletively low information technology
+development. We are aiming to design a diagnosis system for them to help
+ease the disease burden. Although many US diagnosis systems are working
+well, the target diseases are quite different from African infectious
+diseases, which are the main cause of death there. In the mean time, due
+to a limited access of internet in Africa, US systems are not able to
+work there.
+
+\hypertarget{solution}{%
+\subsection{Solution}\label{solution}}
+
+We are aiming to develop a diagnosis system for Africa people. The
+system will be able to work offline, while high accuracy and broad
+spectrum are maintained. We have access to IBM MarketScan medical
+records and DeepDive text corpus data set, and we collected some common
+diseases and their corresponding symptoms, both in the US and in
+Nigeria, the largest country in Africa. The system is designed as
+following: \#\#\# Data preparing IBM MarketScan medical records are used
+to summarized the frequency of different diseases and serve as a prior
+probability of diagnosis. DeepDive corpus works as training data for the
+association between diseases and symptoms. The method we use is Word2Vec
+within gensim library. Combining with the disease information we
+collected, an association matrix is formed and this matrix is used for
+an adaptive diagnosis as followed. \#\#\# Adaptive diagnosis Given the
+disease-symptom association, and the inputs from the patient, we are
+able to filter out possible diagnosises for the patient. With a list of
+possible diagnosis, a reduced association matrix is formed and the most
+informative symptom is asked. After the answer from the patient is got,
+the matrix is further reduced. Finally the matrix is reduced to only one
+line and the diagnosis is done. In this way, not only the final
+diagnosis result is shown, but also other possible diseases. This is
+because we have collected a list of symptoms, multiplied by the
+association matrix, we actually get the probabilities for all disease in
+our list.
+
+    \hypertarget{step-1-load-data-and-transform-into-dataframes-or-dictionaries}{%
+\subsection{Step 1: load data and transform into dataframes or
+dictionaries}\label{step-1-load-data-and-transform-into-dataframes-or-dictionaries}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{gensim}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{Word2Vec}
+        
+        \PY{c+c1}{\PYZsh{} The medical dictionary trained from NLP for recognizing natural language}
+        \PY{n}{meddic} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../WordEmbedding/trimmed\PYZus{}wv/Dictionary.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{header} \PY{o}{=} \PY{k+kc}{None}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The disease\PYZhy{}symptom association matrix}
+        \PY{n}{WM} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../WeightMatrix/Dis\PYZus{}Sym\PYZus{}30.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} The association between medical words and UMLS codes. The association matrix is shown as unified codes.}
+        \PY{n}{dis2sym} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{../UMLS/dis\PYZus{}symptom.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{} processing for matching of medical codes and medical terms, and the disease population information.}
+        \PY{n}{dis2sym}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{n}{method}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ffill}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+        
+        \PY{n}{umls\PYZus{}dis} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{n}{umls\PYZus{}sym} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{n}{dis\PYZus{}num} \PY{o}{=} \PY{p}{\PYZob{}}\PY{p}{\PYZcb{}}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{dis2sym}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+            \PY{n}{temp} \PY{o}{=} \PY{n}{dis2sym}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{items} \PY{o}{=} \PY{n}{temp}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZca{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{item} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{UMLS:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{item}\PY{p}{)} \PY{o}{!=} \PY{l+m+mi}{2}\PY{p}{:} \PY{k}{continue}
+            \PY{n}{umls\PYZus{}dis}\PY{p}{[}\PY{n}{item}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{item}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            \PY{n}{dis\PYZus{}num}\PY{p}{[}\PY{n}{item}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n}{dis2sym}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{dis2sym}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+            \PY{n}{temp} \PY{o}{=} \PY{n}{dis2sym}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+            \PY{n}{items} \PY{o}{=} \PY{n}{temp}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZca{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{item} \PY{o}{=} \PY{n}{items}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{strip}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{UMLS:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZus{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{item}\PY{p}{)} \PY{o}{!=} \PY{l+m+mi}{2}\PY{p}{:} \PY{k}{continue}
+            \PY{n}{umls\PYZus{}sym}\PY{p}{[}\PY{n}{item}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]} \PY{o}{=} \PY{n}{item}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+            
+        \PY{n}{rev\PYZus{}sym} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{v}\PY{p}{:} \PY{n}{k} \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{umls\PYZus{}sym}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+        \PY{n}{rev\PYZus{}dis} \PY{o}{=} \PY{p}{\PYZob{}}\PY{n}{v}\PY{p}{:} \PY{n}{k} \PY{k}{for} \PY{n}{k}\PY{p}{,} \PY{n}{v} \PY{o+ow}{in} \PY{n}{umls\PYZus{}dis}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+C:\textbackslash{}Users\textbackslash{}zhang\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}smart\_open\textbackslash{}ssh.py:34: UserWarning: paramiko missing, opening SSH/SCP/SFTP paths will be disabled.  `pip install paramiko` to suppress
+  warnings.warn('paramiko missing, opening SSH/SCP/SFTP paths will be disabled.  `pip install paramiko` to suppress')
+C:\textbackslash{}Users\textbackslash{}zhang\textbackslash{}Anaconda3\textbackslash{}lib\textbackslash{}site-packages\textbackslash{}gensim\textbackslash{}utils.py:1197: UserWarning: detected Windows; aliasing chunkize to chunkize\_serial
+  warnings.warn("detected Windows; aliasing chunkize to chunkize\_serial")
+
+    \end{Verbatim}
+
+    \hypertarget{function-definitions}{%
+\subsection{Function definitions}\label{function-definitions}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} inputs for basic information of the patient}
+        \PY{k}{def} \PY{n+nf}{initial\PYZus{}input}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} initial input part}
+            \PY{n}{gendermap} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{F}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Female}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{M}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Please type in the gender for the patient. F for female and M for male}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{g} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+            \PY{n}{gender} \PY{o}{=} \PY{n}{gendermap}\PY{p}{[}\PY{n}{g}\PY{p}{]}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Please type in the age for the patient in years.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{age} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{input}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{What symptom do you have?}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            \PY{n}{sym} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+            
+            \PY{k}{return} \PY{n}{gender}\PY{p}{,} \PY{n}{age}\PY{p}{,} \PY{n}{sym}
+\end{Verbatim}
+
+
+    \hypertarget{findsynonym-function-finds-the-closest-medical-terms-for-the-natural-language-inputs}{%
+\subsubsection{findsynonym function finds the closest medical terms for
+the natural language
+inputs}\label{findsynonym-function-finds-the-closest-medical-terms-for-the-natural-language-inputs}}
+
+For example, you input `coughing', `cough' will be found and the UMLS
+code for cough is found and used for further diagnosis
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k+kn}{import} \PY{n+nn}{re}
+        \PY{k}{def} \PY{n+nf}{findsynonym}\PY{p}{(}\PY{n}{sym}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{sym} \PY{o+ow}{in} \PY{n}{rev\PYZus{}sym}\PY{p}{:}
+                \PY{k}{return} \PY{n}{rev\PYZus{}sym}\PY{p}{[}\PY{n}{sym}\PY{p}{]}
+            
+            \PY{k}{if} \PY{n}{sym} \PY{o+ow}{in} \PY{n}{meddic}\PY{o}{.}\PY{n}{index}\PY{p}{:}
+                \PY{k}{return} \PY{n}{meddic}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{sym}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+\end{Verbatim}
+
+
+    \hypertarget{selectmatrix-function-reduces-the-association-matrix-to-smaller-ones}{%
+\subsubsection{SelectMatrix function reduces the association matrix to
+smaller
+ones}\label{selectmatrix-function-reduces-the-association-matrix-to-smaller-ones}}
+
+By choosing only the diseases that matches current symptoms, and the
+symtoms associated with these diseases.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{k}{def} \PY{n+nf}{SelectedMatrix}\PY{p}{(}\PY{n}{sym}\PY{p}{)}\PY{p}{:}
+            \PY{n}{selected} \PY{o}{=} \PY{n}{WM}\PY{p}{[}\PY{n}{WM}\PY{p}{[}\PY{n}{sym}\PY{p}{]} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{]}
+            \PY{n}{selected} \PY{o}{=} \PY{n}{selected}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{n}{sym}\PY{p}{]}\PY{p}{)}
+            \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{selected}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+                \PY{k}{if} \PY{n+nb}{sum}\PY{p}{(}\PY{n}{selected}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{:}
+                    \PY{n}{selected}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{,}\PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{k}{return} \PY{n}{selected}
+            
+\end{Verbatim}
+
+
+    \hypertarget{renorm-function-renormalized-the-diagnosis-vector-via-softmax}{%
+\subsubsection{Renorm function renormalized the diagnosis vector via
+softmax}\label{renorm-function-renormalized-the-diagnosis-vector-via-softmax}}
+
+to distinguish the large amount of diseases and maintain a sum of unity
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{T} \PY{o}{=} \PY{l+m+mf}{0.03}
+        \PY{k}{def} \PY{n+nf}{renorm}\PY{p}{(}\PY{n}{dia}\PY{p}{)}\PY{p}{:}
+            \PY{n}{dia}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{n}{dia}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{n}{s} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{[}\PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{ai}\PY{o}{/}\PY{n}{T}\PY{p}{)} \PY{k}{for} \PY{n}{ai} \PY{o+ow}{in} \PY{n}{dia}\PY{p}{]}\PY{p}{)}
+            \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{exp}\PY{p}{(}\PY{n}{dia}\PY{o}{/}\PY{n}{T}\PY{p}{)}\PY{o}{/}\PY{n}{s}
+\end{Verbatim}
+
+
+    \hypertarget{diagnosis-function-does-the-diagnosis}{%
+\subsubsection{Diagnosis function does the
+diagnosis}\label{diagnosis-function-does-the-diagnosis}}
+
+\begin{itemize}
+\tightlist
+\item
+  step 1: Get the initial input including gender, age and a symptom
+\item
+  step 2: Choose a most informative question to ask and get answer from
+  the patient
+\item
+  step 3: Reduce the association matrix
+\item
+  step 4: Check whether there is only one disease left in the reduced,
+  if not go back step 2
+\item
+  step 5: Calculate the diagnosis vector from the symptoms multiplied by
+  the association matrix
+\item
+  step 6: renormalized the diagnosis vector and print out the top five
+  possible diseases
+\item
+  step 7: Use the Bing Web Search SDK to find more information about the
+  diagnosis result
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{k}{def} \PY{n+nf}{diagnosis}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            
+            \PY{n}{gender}\PY{p}{,} \PY{n}{age}\PY{p}{,} \PY{n}{sym} \PY{o}{=} \PY{n}{initial\PYZus{}input}\PY{p}{(}\PY{p}{)}
+            
+            \PY{n}{sym} \PY{o}{=} \PY{n}{findsynonym}\PY{p}{(}\PY{n}{sym}\PY{p}{)}
+            
+            \PY{n}{selected} \PY{o}{=} \PY{n}{SelectedMatrix}\PY{p}{(}\PY{n}{sym}\PY{p}{)}
+            
+            \PY{c+c1}{\PYZsh{}The response vector}
+            \PY{n}{res} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{index}\PY{o}{=}\PY{n}{WM}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n+nb}{len}\PY{p}{(}\PY{n}{WM}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}
+            \PY{n}{res}\PY{p}{[}\PY{n}{sym}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+            
+            \PY{c+c1}{\PYZsh{}Diagnosis process}
+            \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} compute the probabilities}
+                \PY{n}{dia} \PY{o}{=} \PY{n}{WM}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{res}\PY{p}{)}
+                
+                \PY{c+c1}{\PYZsh{} drop the columns with no information}
+                \PY{k}{for} \PY{n}{j} \PY{o+ow}{in} \PY{n}{selected}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+                    \PY{k}{if} \PY{l+m+mi}{0} \PY{o+ow}{not} \PY{o+ow}{in} \PY{n}{selected}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                        \PY{n}{res}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                        \PY{n}{selected}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}  
+                
+                \PY{c+c1}{\PYZsh{} the diagnosis criterion}
+                \PY{k}{if} \PY{n+nb}{len}\PY{p}{(}\PY{n}{selected}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}\PY{p}{:}
+                    \PY{n}{dia} \PY{o}{=} \PY{n}{renorm}\PY{p}{(}\PY{n}{dia}\PY{p}{)}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Diagnosis results:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{dia}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+                        \PY{k}{if} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{l+m+mi}{5}\PY{p}{:}
+                            \PY{n+nb}{print}\PY{p}{(}\PY{n}{umls\PYZus{}dis}\PY{p}{[}\PY{n}{dia}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+si}{\PYZpc{}2d}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{dia}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}        
+                    \PY{k}{return} \PY{n}{umls\PYZus{}dis}\PY{p}{[}\PY{n}{dia}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+                    
+                \PY{c+c1}{\PYZsh{}choose the most relevant symptom to ask: The symptom that are least shared with other diseases}
+                \PY{n}{next\PYZus{}i} \PY{o}{=} \PY{n}{selected}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{100}
+                \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{selected}\PY{o}{.}\PY{n}{columns}\PY{p}{:}   
+                    \PY{k}{if} \PY{l+m+mi}{0} \PY{o+ow}{in} \PY{n}{selected}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                        \PY{n}{pri} \PY{o}{=} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{selected}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n+nb}{len}\PY{p}{(}\PY{n}{selected}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}
+                        \PY{k}{if} \PY{n}{pri} \PY{o}{\PYZlt{}} \PY{n}{s}\PY{p}{:}
+                            \PY{n}{s} \PY{o}{=} \PY{n}{pri}
+                            \PY{n}{next\PYZus{}i} \PY{o}{=} \PY{n}{i}      
+                    \PY{k}{else}\PY{p}{:}
+                        \PY{n}{res}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                        \PY{n}{selected} \PY{o}{=} \PY{n}{selected}\PY{p}{[}\PY{n}{selected}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]}\PY{o}{!=}\PY{l+m+mi}{0}\PY{p}{]}
+                 
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Do you have the following symptom: (Y for Yes and N for No)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{n}{umls\PYZus{}sym}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]}\PY{p}{)}
+                
+                \PY{n}{answer} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+                \PY{k}{while} \PY{n}{answer} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{and} \PY{n}{answer} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{N}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                    \PY{n}{answer} \PY{o}{=} \PY{n+nb}{input}\PY{p}{(}\PY{p}{)}
+                      
+                \PY{k}{if} \PY{n}{answer} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                    \PY{n}{res}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+                    \PY{n}{selected} \PY{o}{=} \PY{n}{selected}\PY{p}{[}\PY{n}{selected}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]}\PY{o}{!=}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{res}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{0}
+                    \PY{n}{selected} \PY{o}{=} \PY{n}{selected}\PY{p}{[}\PY{n}{selected}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{]}
+                    
+                \PY{n}{selected}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{n}{next\PYZus{}i}\PY{p}{]}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{azure-bing-web-search-for-diagnosis-result}{%
+\subsubsection{Azure Bing web search for diagnosis
+result}\label{azure-bing-web-search-for-diagnosis-result}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Import required modules.}
+        \PY{k+kn}{from} \PY{n+nn}{azure}\PY{n+nn}{.}\PY{n+nn}{cognitiveservices}\PY{n+nn}{.}\PY{n+nn}{search}\PY{n+nn}{.}\PY{n+nn}{websearch} \PY{k}{import} \PY{n}{WebSearchAPI}
+        \PY{k+kn}{from} \PY{n+nn}{azure}\PY{n+nn}{.}\PY{n+nn}{cognitiveservices}\PY{n+nn}{.}\PY{n+nn}{search}\PY{n+nn}{.}\PY{n+nn}{websearch}\PY{n+nn}{.}\PY{n+nn}{models} \PY{k}{import} \PY{n}{SafeSearch}
+        \PY{k+kn}{from} \PY{n+nn}{msrest}\PY{n+nn}{.}\PY{n+nn}{authentication} \PY{k}{import} \PY{n}{CognitiveServicesCredentials}
+        
+        \PY{c+c1}{\PYZsh{} Replace with your subscription key.}
+        \PY{n}{subscription\PYZus{}key} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{3b4066fbe4774c6da3a47e7a5399b440}\PY{l+s+s2}{\PYZdq{}}
+        
+        \PY{c+c1}{\PYZsh{} Instantiate the client and replace with your endpoint.}
+        \PY{n}{client} \PY{o}{=} \PY{n}{WebSearchAPI}\PY{p}{(}\PY{n}{CognitiveServicesCredentials}\PY{p}{(}\PY{n}{subscription\PYZus{}key}\PY{p}{)}\PY{p}{,} \PY{n}{base\PYZus{}url} \PY{o}{=} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{https://bingtril.cognitiveservices.azure.com/bing/v7.0}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{bing}\PY{p}{(}\PY{n}{diagnosis}\PY{p}{)}\PY{p}{:}
+        
+            \PY{c+c1}{\PYZsh{} Make a request. Replace Yosemite if you\PYZsq{}d like.}
+            \PY{n}{web\PYZus{}data} \PY{o}{=} \PY{n}{client}\PY{o}{.}\PY{n}{web}\PY{o}{.}\PY{n}{search}\PY{p}{(}\PY{n}{query}\PY{o}{=}\PY{n}{diagnosis}\PY{p}{)}
+        
+            \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}}
+        \PY{l+s+sd}{    Web pages}
+        \PY{l+s+sd}{    If the search response contains web pages, the first result\PYZsq{}s name and url}
+        \PY{l+s+sd}{    are printed.}
+        \PY{l+s+sd}{    \PYZsq{}\PYZsq{}\PYZsq{}}
+            \PY{k}{if} \PY{n+nb}{hasattr}\PY{p}{(}\PY{n}{web\PYZus{}data}\PY{o}{.}\PY{n}{web\PYZus{}pages}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+        
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}r}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{Webpage Results\PYZsh{}}\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{web\PYZus{}data}\PY{o}{.}\PY{n}{web\PYZus{}pages}\PY{o}{.}\PY{n}{value}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+        
+                \PY{n}{first\PYZus{}web\PYZus{}page} \PY{o}{=} \PY{n}{web\PYZus{}data}\PY{o}{.}\PY{n}{web\PYZus{}pages}\PY{o}{.}\PY{n}{value}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{First web page name: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{first\PYZus{}web\PYZus{}page}\PY{o}{.}\PY{n}{name}\PY{p}{)}\PY{p}{)}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{First web page URL: }\PY{l+s+si}{\PYZob{}\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{first\PYZus{}web\PYZus{}page}\PY{o}{.}\PY{n}{url}\PY{p}{)}\PY{p}{)}
+        
+            \PY{k}{else}\PY{p}{:}
+                \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Didn}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{t find any web pages...}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+            \PY{k}{return}
+\end{Verbatim}
+
+
+    \hypertarget{an-example-of-diagnosis-process}{%
+\subsection{An example of diagnosis
+process}\label{an-example-of-diagnosis-process}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  diagnosis process
+\item
+  bing web search based on the outcome of diagnosis
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{diagnosis}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Please type in the gender for the patient. F for female and M for male
+M
+Please type in the age for the patient in years.
+24
+What symptom do you have?
+pain chest
+-----------------------------------------------------------
+Do you have the following symptom: (Y for Yes and N for No)
+sweat
+Y
+-----------------------------------------------------------
+Do you have the following symptom: (Y for Yes and N for No)
+palpitation
+Y
+-----------------------------------------------------------
+Do you have the following symptom: (Y for Yes and N for No)
+dizziness
+Y
+-----------------------------------------------------------
+Do you have the following symptom: (Y for Yes and N for No)
+asthenia
+Y
+-----------------------------------------------------------
+Diagnosis results:
+hypertensive disease :69 \%
+hyperlipidemia :28 \%
+coronary arteriosclerosis : 1 \%
+kidney disease : 0 \%
+paroxysmal dyspnea : 0 \%
+-----------------------------------------------------------
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:} 'hypertensive disease'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{bing}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hypertensive disease}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+Webpage Results\#9
+First web page name: Hypertensive Heart Disease: Types, Symptoms, and Diagnosis 
+First web page URL: https://www.healthline.com/health/hypertensive-heart-disease 
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
