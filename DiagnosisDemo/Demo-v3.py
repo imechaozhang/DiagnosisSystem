@@ -97,7 +97,7 @@ def diagnosis():
     #Diagnosis process
     while True:
         dia = WM.dot(res)
-        
+        print(dia)
         for j in selected.columns:
             if 0 not in selected[j].value_counts():
                 res[j] = 1

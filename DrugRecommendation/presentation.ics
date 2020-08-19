@@ -1,0 +1,42 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//Symplicity Corporation//PHP ICS Generator//EN
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+BEGIN:STANDARD
+DTSTART:20181104T020000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20190310T020000
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:20191103T020000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20200308T020000
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:6c037734428fca88517aec27d7d8b3ffed0a1563@grad-uchicago-csm.symplicity.com
+DTSTAMP:20191001T211822Z
+SUMMARY:Information Session with Morgan Stanley
+DESCRIPTION:Information Session: Employer Information Session\nEmployer: Morgan Stanley\nLocation: Stevanovich Center\nDescription: Morgan Stanley believes capital has the power to create positive change in the world. The biggest and most impactful changes come from people like you. If you come to Morgan Stanley\, what will you create?\n\nWe invite students to learn more about our Quantitative Finance Division and how to get into the recruitment process for our Summer Program opportunities!\n\nMorgan Stanley Quantitative Finance Presentation at University of Chicago\nTime: 12:30pm – 1:30pm\nLocation: University of Chicago\, 5727 South University Avenue\nThe presentation will provide insight into the roles within our division and the exciting work that our interns do!\nPlease register here IN ADDITION to your RSVP in GRAD Gargoyle: https://morganstanley.tal.net/vx/brand-2/candidate/so/pm/1/pl/2/opp/9124-Morgan-Stanley-Quantitative-Finance-Presentation-at-UChicago/en-GB\n\nMorgan Stanley will also be hosting Quantitative Finance coffee chats from 10 am to noon on October 15\, 2019. Coffee chats are by invitation  only. Should you be selected for coffee chats you will receive a timeslot and a confirmation email with further details. Please apply here: https://morganstanley.tal.net/vx/brand-2/candidate/so/pm/1/pl/2/opp/9128-Quantitative-Finance-Coffee-Chats-at-the-University-of-Chicago/en-GB\n\n\n\nFor more information\, log into UChicagoGRAD GARGOYLE:\n\n	https://grad-uchicago-csm.symplicity.com/students/
+DTSTART;TZID=America/Chicago:20191015T123000
+DTEND;TZID=America/Chicago:20191015T133000
+LOCATION:Stevanovich Center
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,42 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+PRODID:-//Symplicity Corporation//PHP ICS Generator//EN
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+BEGIN:STANDARD
+DTSTART:20181104T020000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20190310T020000
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+END:DAYLIGHT
+BEGIN:STANDARD
+DTSTART:20191103T020000
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:20200308T020000
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:307b387fc6f372efbde63542920ae8c719d0c01d@grad-uchicago-csm.symplicity.com
+DTSTAMP:20191001T212019Z
+SUMMARY:Information Session with American Family Insurance
+DESCRIPTION:Information Session: Employer Information Session\nEmployer: American Family Insurance\nLocation: Ida Noyes: East Lounge\nDescription: American Family Insurance has almost 100 years of history for providing products and solutions to protect people’s life and dream.\n\nNow AmFam is a leader of using technology to transform traditional/finance industries to better serve the general public. Machine \nLearning research team at AmFam is a group of brilliant researchers who dedicate to use computing and artificial intelligence to accelerate the transformation\, and to contribute to  the general research community by publications and collaborations with world class universities and research labs.  Our on-going research projects include knowledge graph and representation\, state of the art deep neural nets language and vision models\, Human in the loop machine learning. Our academic partners include Stanford University\, Mila lab\, Carnegie Mellon University\, University of Wisconsin Madison and etc.\n \nJoin AmFam to learn about current opportunities including summer internships\, full time data scientists\, and DevOps and Machine Learning Engineers\n\n\nFor more information\, log into UChicagoGRAD GARGOYLE:\n\n	https://grad-uchicago-csm.symplicity.com/students/
+DTSTART;TZID=America/Chicago:20191017T120000
+DTEND;TZID=America/Chicago:20191017T133000
+LOCATION:Ida Noyes: East Lounge
+END:VEVENT
+END:VCALENDAR
